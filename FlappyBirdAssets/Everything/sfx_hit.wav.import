@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_hit.wav-db845580897bb0f5c3b857944449196e.sample"
+
+[deps]
+
+source_file="res://FlappyBirdAssets/Everything/sfx_hit.wav"
+dest_files=[ "res://.import/sfx_hit.wav-db845580897bb0f5c3b857944449196e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

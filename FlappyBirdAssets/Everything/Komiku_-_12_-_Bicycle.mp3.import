@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Komiku_-_12_-_Bicycle.mp3-a3223d6909c3ddedc38fef47d8ca414e.mp3str"
+
+[deps]
+
+source_file="res://FlappyBirdAssets/Everything/Komiku_-_12_-_Bicycle.mp3"
+dest_files=[ "res://.import/Komiku_-_12_-_Bicycle.mp3-a3223d6909c3ddedc38fef47d8ca414e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

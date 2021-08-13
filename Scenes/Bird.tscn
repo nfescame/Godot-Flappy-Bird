@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://FlappyBirdAssets/yellowbird-midflap.png" type="Texture" id=1]
+[ext_resource path="res://FlappyBirdAssets/yellowbird-downflap.png" type="Texture" id=2]
+[ext_resource path="res://FlappyBirdAssets/yellowbird-upflap.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Bird.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/DetectCollisonArea.gd" type="Script" id=5]
+[ext_resource path="res://FlappyBirdAssets/Everything/sfx_point.wav" type="AudioStream" id=6]
+[ext_resource path="res://FlappyBirdAssets/Everything/sfx_wing.wav" type="AudioStream" id=7]
+[ext_resource path="res://FlappyBirdAssets/bluebird-midflap.png" type="Texture" id=8]
+[ext_resource path="res://FlappyBirdAssets/Everything/sfx_hit.wav" type="AudioStream" id=9]
+[ext_resource path="res://FlappyBirdAssets/bluebird-downflap.png" type="Texture" id=10]
+[ext_resource path="res://FlappyBirdAssets/bluebird-upflap.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle2",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle1",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 10.6314
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 13.3359
+height = 0.0
+
+[node name="Bird" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle2"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="DetectCollisonArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectCollisonArea"]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="AudioJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="AudioHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="AudioScore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+mix_target = 1
+
+[connection signal="Kill_bird" from="DetectCollisonArea" to="." method="_on_Kill_bird"]
+[connection signal="body_entered" from="DetectCollisonArea" to="DetectCollisonArea" method="_on_DetectCollisonArea_body_entered"]
